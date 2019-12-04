@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+
+
+
+  <display-name>Web Application</display-name>
+ 
+ <welcome-file-list>
+    <welcome-file>InitAlbum</welcome-file>
+  </welcome-file-list>
+  
+  <listener>
+  	<listener-class>com.david.giczi.album.model.DbConnectListener</listener-class>
+  </listener>
+  
+
+  
+  <servlet>
+  	<servlet-name>InitAlbum</servlet-name>
+  	<servlet-class>InitAlbum</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>InitAlbum</servlet-name>
+  	<url-pattern>/InitAlbum</url-pattern>
+  </servlet-mapping>
+  
+  
+    <servlet>
+  	<servlet-name>AddImage</servlet-name>
+  	<servlet-class>AddImage</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>AddImage</servlet-name>
+  	<url-pattern>/AddImage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>GetImage</servlet-name>
+  	<servlet-class>GetImage</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>GetImage</servlet-name>
+  	<url-pattern>/GetImage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>PutImage</servlet-name>
+  	<servlet-class>PutImage</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>PutImage</servlet-name>
+  	<url-pattern>/PutImage</url-pattern>
+  </servlet-mapping>
+
+<servlet>
+  	<servlet-name>SaveImage</servlet-name>
+  	<servlet-class>SaveImage</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>SaveImage</servlet-name>
+  	<url-pattern>/SaveImage</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+</element>
