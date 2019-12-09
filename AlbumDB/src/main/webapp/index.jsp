@@ -6,8 +6,6 @@
 <head>
 
 <title>Album</title>
-</head>
-<body>
 
 <style>
 
@@ -473,7 +471,7 @@ text-align: center;
 		
 		if(speed == -1){
 			
-			alert("Invalid input value!");
+			alert("Érvénytelen bemeneti adat.");
 			return;
 		}
 		

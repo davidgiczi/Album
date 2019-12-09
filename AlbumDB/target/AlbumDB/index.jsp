@@ -6,8 +6,6 @@
 <head>
 
 <title>Album</title>
-</head>
-<body>
 
 <style>
 
@@ -254,8 +252,18 @@ text-align: center;
 
 <c:forEach items="${topics}" var="topic">
 
-<c:if test="${chosenTopic == topic}"></c:if>
+<c:choose>
+
+<c:when test="${chosenTopic == topic}">
 <option selected="selected" value="${topic}">${topic}</option>
+</c:when>
+
+<c:otherwise>
+<option value="${topic}">${topic}</option>
+</c:otherwise>
+
+</c:choose>
+
 </c:forEach>
 
 </select>
@@ -463,7 +471,7 @@ text-align: center;
 		
 		if(speed == -1){
 			
-			alert("Invalid input value!");
+			alert("Érvénytelen bemeneti adat.");
 			return;
 		}
 		

@@ -136,7 +136,7 @@ button {
 <button onclick="send()" class="modify" >Módosítás</button>
 <button onclick="back()" class="cancel">Mégse</button>
 
-<form id="modiForm" method="POST" action="Modify" accept-charset="UTF-8">
+<form id="modiForm" method="POST" action="ModifyImage" accept-charset="UTF-8">
 
 <table style="width:100%" >
   <tr>
@@ -153,22 +153,23 @@ button {
   
   <tr>
 
-    <td><textarea  style="color:  #2C3E50" name="title" cols="30" rows="3">${title}</textarea></td>
+    <td><textarea  style="color:#2C3E50" name="title" cols="62" rows="4">${title}</textarea></td>
     
-    <td><textarea style="color:  #2C3E50"  name="comment" cols="30" rows="3">${modifyImage.comment}</textarea></td>
+    <td><textarea style="color:#2C3E50"  name="comment" cols="62" rows="4">${modifyImage.comment}</textarea></td>
     
     
     <td> 
     
     	<select id="topics" onchange="selectTopic()" style="background-color: white;color: Gray">
     	
+    	<option>Témák</option>
     	<c:forEach items="${topics}" var="topic">
     	<option value="${topic}">${topic}</option>
     	</c:forEach>
     	
     	</select>
    
-    <input id="selected" style="color:  #2C3E50" name="top" type="text" value="${modifyImage.topic}">
+    <input id="selected" style="color:#2C3E50" name="top" type="text" value="${modifyImage.topic}">
     
     </td>
    
@@ -182,72 +183,36 @@ button {
     
   <td> 
   
-  <select id="meta" onchange="selectMeta();setupImagePosition()" style="background-color: white;color: Gray">
+  <select id="meta" name="meta" onchange="setupImagePosition()" style="background-color: white;color: Gray">
 
-	<c:if test="${modifyImage.meta == 'NORMAL'}">
 	
-	<option  value="NORMAL" selected="selected">NORMAL</option>
-	<option  value="FORGATAS_BALRA">FORGATAS_BALRA</option>
-	<option  value="FORGATAS_JOBBRA">FORGATAS_JOBBRA</option>
-	<option  value="ALLO_KERET">ALLO_KERET</option>
-	<option  value="PANORAMA">PANORAMA</option>
+	
+	<c:forEach items="${meta}"  var="data">
+	
+	<c:choose>
+	
+	<c:when test="${data == modifyImage.meta}" >
 
-	</c:if>
+	<option  value="${data}" selected="selected">${data}</option>
 	
-	<c:if test="${modifyImage.meta == 'FORGATAS_BALRA'}">
+	</c:when>
 	
-	<option  value="NORMAL">NORMAL</option>
-	<option  value="FORGATAS_BALRA" selected="selected">FORGATAS_BALRA</option>
-	<option  value="FORGATAS_JOBBRA">FORGATAS_JOBBRA</option>
-	<option  value="ALLO_KERET">ALLO_KERET</option>
-	<option  value="PANORAMA">PANORAMA</option>
+	<c:otherwise>
+	<option  value="${data}">${data}</option>
+	</c:otherwise>
 
+	</c:choose>
 
-	</c:if>
+	</c:forEach>
 	
-	<c:if test="${modifyImage.meta == 'FORGATAS_JOBBRA'}">
 	
-	<option  value="NORMAL">NORMAL</option>
-	<option  value="FORGATAS_BALRA">FORGATAS_BALRA</option>
-	<option  value="FORGATAS_JOBBRA" selected="selected">FORGATAS_JOBBRA</option>
-	<option  value="ALLO_KERET">ALLO_KERET</option>
-	<option  value="PANORAMA">PANORAMA</option>
 	
-
-
-	</c:if>
-	
-	<c:if test="${modifyImage.meta == 'ALLO_KERET'}">
-	
-	<option  value="NORMAL">NORMAL</option>
-	<option  value="FORGATAS_BALRA">FORGATAS_BALRA</option>
-	<option  value="FORGATAS_JOBBRA">FORGATAS_JOBBRA</option>
-	<option  value="ALLO_KERET" selected="selected">ALLO_KERET</option>
-	<option  value="PANORAMA">PANORAMA</option>
-	
-
-
-	</c:if>
-	
-	<c:if test="${modifyImage.meta == 'PANORAMA'}">
-	
-	<option  value="NORMAL">NORMAL</option>
-	<option  value="FORGATAS_BALRA">FORGATAS_BALRA</option>
-	<option  value="FORGATAS_JOBBRA">FORGATAS_JOBBRA</option>
-	<option  value="ALLO_KERET">ALLO_KERET</option>
-	<option  value="PANORAMA" selected="selected">PANORAMA</option>
-
-
-	</c:if>
-	
-</select> 
-
- <input id="chosen" style="color:  #2C3E50" name="meta" type="text" value="${modifyImage.meta}" readonly="readonly">
+</select>
 
 </td>
       
    
-    <td><input type="text" name="date" value="${modifyImage.date}" readonly="readonly"></td>
+    <td><input type="text" style="color:#2C3E50" name="date" value="${modifyImage.date}" readonly="readonly"></td>
 
 </tr>
   
@@ -277,12 +242,12 @@ if( position == "NORMAL" ) {
 }
 else if (position == "FORGATAS_BALRA" ) {
 	
-	rotate90();
+	 rotate270();
 	
 }
 else if (position == "FORGATAS_JOBBRA" ) {
 	
-	rotate270();
+		rotate90();
 	
 }
 else if (position == "ALLO_KERET" ) {
@@ -315,15 +280,6 @@ function selectTopic() {
 	
 }
 
-function selectMeta() {
-	
-	
-	var meta = document.getElementById("meta").value;
-	
-	
-	document.getElementById("chosen").value = meta;
-	
-}
 
 function rotate90() {
 	
@@ -457,7 +413,7 @@ function back() {
 		document.getElementById("all").submit();
 		
 	}
-	else if( from == "txt") {
+	else {
 		
 		
 		document.getElementById("txt").submit();

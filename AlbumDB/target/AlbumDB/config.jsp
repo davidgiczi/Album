@@ -15,6 +15,7 @@ button {
 	color: #2C3E50;
 }
 
+
 </style>
 
 
@@ -22,6 +23,10 @@ button {
 
 
 <body style="background-color: lavender">
+
+<center><font  face="Lucida Handwriting" size="15px" color="white">ALBUM</font></center>
+
+<hr>
 
 <form action="AddImage">
 
@@ -33,13 +38,13 @@ button {
 
 <form action="GetImage">
 
-<input type="hidden"  name="getAll" value="getall">
+<input type="hidden"  name="all" value="all">
 <button>Listázás</button>
 
 </form>
 
 
-<form id = "back" action="Init"></form><br>
+<form id = "back" action="InitAlbum"></form><br>
 
 
 <form action="GetImage" accept-charset="UTF-8">
@@ -60,27 +65,20 @@ var persistImages = "${inputImagesNumber}";
 var ok = "${ok}";
 var notFound =  "${notfound}";
 
-if( ok == 1 && persistImages == 1 ) {
+if( ok == 1 ) {
 
-alert("Kép hozzáadva az albumhoz.");
-}
-
-else if ( ok == 1 &&  persistImages > 1) {
-
-alert("Képek hozzáadva az albumhoz.");
-}
-else if( ok == 0 && persistImages == 1 ) {
-
-alert("Kép hozzáadása az albumhoz sikertelen.");
-}
-
-else if ( ok == 0 &&  persistImages > 1) {
-
-alert("Képek hozzáadása az albumhoz sikertelen.");
+alert(persistImages+" db kép hozzáadva az albumhoz.");
 
 }
 
-if( notFound ==1 ) {
+
+else if ( ok == -1 ) {
+
+alert(persistImages+" db kép hozzáadása az albumhoz sikertelen.");
+
+}
+
+if( notFound == 1 ) {
 	
 	alert("A megadott adatokkal kép nem található.")
 }

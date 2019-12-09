@@ -60,7 +60,7 @@ public class SaveImage extends HttpServlet {
 				
 		     ByteArrayInputStream input_stream = new ByteArrayInputStream(data);
 		     BufferedImage buffered_image = ImageIO.read(input_stream);
-		     ImageIO.write(buffered_image , "jpg", new File("C:\\Users\\Public\\Pictures\\"+img.getFileName()) );
+		     ImageIO.write(buffered_image , "jpg", new File("C:\\Users\\Judut\\Pictures\\Saved Pictures\\"+img.getFileName()) );
 		     													
 		}
 		

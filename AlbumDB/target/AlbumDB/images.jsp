@@ -42,6 +42,7 @@ button {
 
 <body style="background-color: lavender">
 
+
 <table style="width:100%" >
   <tr>
   	<th>SORSZÁM</th>
@@ -108,6 +109,18 @@ button {
 	
 </form>
 
+<div class="center">
+<button onclick="save()">Kép(ek) mentése a PC-re</button>
+</div>
+
+
+<form  id="save" action="SaveImage">
+
+<input type="hidden" name="option" value="${option}">
+
+</form>
+
+
 </c:if>
 
 
@@ -133,6 +146,11 @@ button {
 <script>
 
 
+function save() {
+	
+	document.getElementById("save").submit();
+}
+
 function addImage() {
 	
 	document.getElementById("add").submit();
@@ -156,6 +174,17 @@ var invalid = "${invalid}";
 	 
  }
 
+var saved = "${saving}";
+
+
+if( saved != -1 ) {
+	
+	alert(saved+" db kép mentve a \'C:\\Users\\User\\Pictures\\Saved Pictures\' mappába.")
+	
+}
+
+
+	 
 
 
 </script>

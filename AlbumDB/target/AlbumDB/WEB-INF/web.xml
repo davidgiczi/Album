@@ -48,13 +48,13 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>PutImage</servlet-name>
-  	<servlet-class>PutImage</servlet-class>
+  	<servlet-name>ModifyImage</servlet-name>
+  	<servlet-class>ModifyImage</servlet-class>
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>PutImage</servlet-name>
-  	<url-pattern>/PutImage</url-pattern>
+  	<servlet-name>ModifyImage</servlet-name>
+  	<url-pattern>/ModifyImage</url-pattern>
   </servlet-mapping>
 
 <servlet>
