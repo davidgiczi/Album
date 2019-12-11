@@ -6,22 +6,33 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import com.david.giczi.album.model.Image;
 
 public class ImageDAO {
 
-	
+	private EntityManagerFactory emf;
 	private EntityManager em;
 	
 	
 	
-	public ImageDAO(EntityManager em) {
+	public ImageDAO() {
 		
-		this.em = em;
+		emf = Persistence.createEntityManagerFactory("AlbumDB");
+		em = emf.createEntityManager();
 	}
 	
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
+
+
+	public EntityManager getEm() {
+		return em;
+	}
 	
 	public List<Image> getAllImages() {
 		
@@ -54,7 +65,7 @@ public class ImageDAO {
 				        
 					
 				}
-		           
+		          
 				
 			}
 		
@@ -95,7 +106,7 @@ public class ImageDAO {
 			        
 				
 			}
-	           
+	   
 			
 		}
 		
@@ -143,6 +154,7 @@ public class ImageDAO {
 					
 				}
 		           
+				
 				
 			}
 		
@@ -225,7 +237,7 @@ public class ImageDAO {
 		        
 			
 		}
-           
+       
 	
 	}
 	
@@ -271,7 +283,7 @@ finally {
 	}
 	  
 	
-	
+
 	public List<Image> addCodeStringToImage(List<Image> imagesStore) {
 		
 		for (Image image : imagesStore) {

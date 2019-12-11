@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,11 +34,8 @@ public class SaveImage extends HttpServlet {
 			
 			List<Image> store = new ArrayList<>();
 			
-			EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
-			
-			EntityManager em = emf.createEntityManager();
-			
-			ImageDAO dao = new ImageDAO(em);
+		
+			ImageDAO dao = new ImageDAO();
 			
 			
 			if( "all".equals( option ) ) {
@@ -61,6 +56,8 @@ public class SaveImage extends HttpServlet {
 		     ByteArrayInputStream input_stream = new ByteArrayInputStream(data);
 		     BufferedImage buffered_image = ImageIO.read(input_stream);
 		     ImageIO.write(buffered_image , "jpg", new File("C:\\Users\\Judut\\Pictures\\Saved Pictures\\"+img.getFileName()) );
+		     
+		     
 		     													
 		}
 		
@@ -69,6 +66,8 @@ public class SaveImage extends HttpServlet {
 			request.setAttribute("list", 1);
 			request.getRequestDispatcher("images.jsp").forward(request, response);
 			
+			dao.getEm().close();
+			dao.getEmf().close();
 	}
 
 

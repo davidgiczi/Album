@@ -6,8 +6,6 @@ package com.david.giczi.album.controller;
 import java.io.IOException;
 import java.util.Base64;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -115,17 +113,16 @@ public class ModifyImage extends HttpServlet {
 			return;
 		}
 		
-		EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
 		
-		EntityManager em = emf.createEntityManager();
-		
-		ImageDAO dao = new ImageDAO(em);
+		ImageDAO dao = new ImageDAO();
 		
 		
 			modifyImage.setId(Long.valueOf(id));
 		
 		 	dao.putImage(modifyImage);
-		
+		 	
+		 	dao.getEm().close();
+			dao.getEmf().close();
 		
 		
 		if ( "all".equals( option ) ) {
@@ -143,7 +140,6 @@ public class ModifyImage extends HttpServlet {
 		}
 		
 			
-		em.close();
 	}
 	
 	

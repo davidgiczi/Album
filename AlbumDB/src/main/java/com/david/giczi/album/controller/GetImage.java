@@ -5,8 +5,6 @@ import java.io.IOException;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -126,16 +124,12 @@ public class GetImage extends HttpServlet {
 		
 		savedOption = "all";
 		
-		EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
-		
-		EntityManager em = emf.createEntityManager();
-		
-		ImageDAO dao = new ImageDAO(em);
+		ImageDAO dao = new ImageDAO();
 		
 		imageResultStore = dao.getAllImages();
 		
-		em.close();
-			
+		dao.getEm().close();
+		dao.getEmf().close();
 	
 	}
 	
@@ -189,32 +183,24 @@ public class GetImage extends HttpServlet {
 		
 		savedOption = text;
 		
-		EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
-		
-		EntityManager em = emf.createEntityManager();
-		
-		ImageDAO dao = new ImageDAO(em);
+		ImageDAO dao = new ImageDAO();
 		
 		imageResultStore = dao.getImagesByText( text );
-			   
-		em.close();
-		
+			  
+		dao.getEm().close();
+		dao.getEmf().close();
 	}
 	
 	
 	private void setTopicStore() {
 		
-	
-		EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
 		
-		EntityManager em = emf.createEntityManager();
-		
-		ImageDAO dao = new ImageDAO(em);
+		ImageDAO dao = new ImageDAO();
 		
 		topicStore = dao.getAllTopics();
 		
-		em.close();
-			
+		dao.getEm().close();
+		dao.getEmf().close();
 	
 	}
 	

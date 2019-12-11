@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -89,25 +88,20 @@ public class InitAlbum extends HttpServlet {
 	
 	private void getAllImages() {
 		
-		
-		EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
-		
-		EntityManager em = emf.createEntityManager();
-		
-		ImageDAO dao = new ImageDAO(em);
+	
+		ImageDAO dao = new ImageDAO();
 		
 		imageResultStore = dao.getAllImages();
 		
-		em.close();
+		dao.getEm().close();
+		dao.getEmf().close();
+		
 	}
 	
 	private void initTopicStore() {
+
 		
-		EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
-		
-		EntityManager em = emf.createEntityManager();
-		
-		ImageDAO dao = new ImageDAO(em);
+		ImageDAO dao = new ImageDAO();
 		
 		topicStore = new ArrayList<>();
 		
@@ -132,7 +126,9 @@ public class InitAlbum extends HttpServlet {
 					
 		}
 		
-		em.close();
+		dao.getEm().close();
+		dao.getEmf().close();
+		
 	}
 	
 	
@@ -176,16 +172,13 @@ public class InitAlbum extends HttpServlet {
 	
 	private void getTopicImages(String topic) {
 		
-		
-		EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
-		
-		EntityManager em = emf.createEntityManager();
-		
-		ImageDAO dao = new ImageDAO(em);
+	
+		ImageDAO dao = new ImageDAO();
 		
 		imageResultStore = dao.getImagesByTopic(topic);
 		
-		em.close();
+		dao.getEm().close();
+		dao.getEmf().close();
 	}
 	
 	

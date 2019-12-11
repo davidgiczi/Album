@@ -9,8 +9,6 @@ import java.util.Base64;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -170,15 +168,11 @@ public class AddImage extends HttpServlet {
 	private void persistImage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
-		
-		EntityManager em = emf.createEntityManager();
-		
 		
 		try {
 		
 			
-		ImageDAO dao = new ImageDAO(em);
+		ImageDAO dao = new ImageDAO();
 		
 		dao.persistImages(inputImageStore);	
 		
@@ -196,11 +190,7 @@ public class AddImage extends HttpServlet {
 		request.getRequestDispatcher("config.jsp").forward(request, response);
 				
 		}
-		finally {
-			
-			
-			em.close();
-		}
+		
 		
 		
 	}
@@ -274,16 +264,12 @@ public class AddImage extends HttpServlet {
 		
 		private void setTopicStore() {
 		
-		
-			EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
 			
-			EntityManager em = emf.createEntityManager();
-			
-			ImageDAO dao = new ImageDAO(em);
+			ImageDAO dao = new ImageDAO();
 			
 			topicStore = dao.getAllTopics();
 			
-			em.close();
+			
 		}
 	
 	
