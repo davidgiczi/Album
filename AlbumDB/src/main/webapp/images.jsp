@@ -179,7 +179,7 @@ var saved = "${saving}";
 
 if( saved != -1 ) {
 	
-	alert(saved+" db kép mentve a \'C:\\Users\\User\\Pictures\\Saved Pictures\' mappába.")
+	alert(saved+" db kép mentve a \'C:\\Users\\Public\\Pictures\' mappába.")
 	
 }
 
